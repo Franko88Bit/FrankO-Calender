@@ -31,7 +31,7 @@ $(document).ready(function () {
     console.log(time_in_row_clicked);
     //set these 2 variables in local storage
     localStorage.setItem(time_in_row_clicked, text_input_in_row_clicked);
-    alert("Added this to local storage");
+    alert("Saved this action successfully");
   })
 
   // load data from previous input sessions by the user
@@ -44,6 +44,37 @@ $(document).ready(function () {
   $("#hour-15 .description").val(localStorage.getItem("hour-15"));
   $("#hour-16 .description").val(localStorage.getItem("hour-16"));
   $("#hour-17 .description").val(localStorage.getItem("hour-17"));
-    
-  
+
+  // function here is to account for the red, green and gray color coding for each hour that changes every hour
+  function account_for_each_hour() {
+    // get current hour to compare against all 9 time rows in calendar from 9am to 5pm
+    var current_hour = moment().hour();
+    console.log(current_hour);
+    // looping over each time rows to compare whether we are before, during or after each time row
+    $(".time-block").each(function () {
+      var time_row_hour = parseInt($(this).attr("id").split("hour")[1]);
+      console.log(time_row_hour);
+      if (current_hour === time_row_hour) {
+        // this time row needs to be colored red
+        $(this).addClass("present");
+        $(this).removeClass("past");
+        $(this).removeClass("future");
+      }
+      else if (current_hour < time_row_hour) {
+        // this time row needs to be colored green
+        $(this).addClass("future");
+        $(this).removeClass("present");
+        $(this).removeClass("past");
+      }
+      else {
+        // this time row needs to be gray
+        $(this).addClass("past");
+        $(this).removeClass("present");
+        $(this).removeClass("future");
+      }
+    })
+  }
+  // call it here every time .ready runs 
+  // recall .ready runs AFTER after the browser has finished rendering all the elements in the htmls
+  account_for_each_hour();
 });
