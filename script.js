@@ -18,10 +18,18 @@ $(document).ready(function () {
   // TODO: Add code to get any user input that was saved in localStorage and set
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
 
   // Code to display current date in the top of the page using moment.js from cloudflare cdn in index.html script tag
   $("#currentDay").text(moment().format("MMMM Do YYYY"));
 
+  // anytime a specific blue button per row is click, this function runs, note we have a total of 9 buttons aka 9 rows
+  $(".saveBtn").on("click", function () {
+    // these 2 variables are for the same row in the calendar app
+    var text_input_in_row_clicked = $(this).siblings(".description").val();
+    var time_in_row_clicked = $(this).parent().attr("id"); // note that 1pm is hour-13, the div id defined index.html, 2pm is hour-14
+    console.log(text_input_in_row_clicked);
+    console.log(time_in_row_clicked);
+    //set these 2 variables in local storage.
+    localStorage.setItem(time_in_row_clicked, text_input_in_row_clicked);
+  })
 });
