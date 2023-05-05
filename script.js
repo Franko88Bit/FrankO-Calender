@@ -52,12 +52,12 @@ $(document).ready(function () {
     // looping over each time rows to compare whether we are before, during or after each time row
     $(".time-block").each(function () {
       var time_row_hour = parseInt($(this).attr("id").split("hour")[1].substring(1));
-      console.log("time row hour is");
+      /*console.log("time row hour is");
       console.log(typeof(time_row_hour));
       console.log(time_row_hour);
       console.log("current hour is");
       console.log(typeof(current_hour));
-      console.log(current_hour);
+      console.log(current_hour);*/
       if (current_hour === time_row_hour) {
         // this time row needs to be colored red
         $(this).addClass("present");
