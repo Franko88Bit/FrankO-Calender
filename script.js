@@ -48,12 +48,16 @@ $(document).ready(function () {
   // function here is to account for the red, green and gray color coding for each hour that changes every hour
   function account_for_each_hour() {
     // get current hour to compare against all 9 time rows in calendar from 9am to 5pm
-    var current_hour = moment().hour();
-    console.log(current_hour);
+    var current_hour = parseInt(moment().hour());
     // looping over each time rows to compare whether we are before, during or after each time row
     $(".time-block").each(function () {
-      var time_row_hour = parseInt($(this).attr("id").split("hour")[1]);
+      var time_row_hour = parseInt($(this).attr("id").split("hour")[1].substring(1));
+      console.log("time row hour is");
+      console.log(typeof(time_row_hour));
       console.log(time_row_hour);
+      console.log("current hour is");
+      console.log(typeof(current_hour));
+      console.log(current_hour);
       if (current_hour === time_row_hour) {
         // this time row needs to be colored red
         $(this).addClass("present");
