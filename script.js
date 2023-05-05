@@ -29,7 +29,21 @@ $(document).ready(function () {
     var time_in_row_clicked = $(this).parent().attr("id"); // note that 1pm is hour-13, the div id defined index.html, 2pm is hour-14
     console.log(text_input_in_row_clicked);
     console.log(time_in_row_clicked);
-    //set these 2 variables in local storage.
+    //set these 2 variables in local storage
     localStorage.setItem(time_in_row_clicked, text_input_in_row_clicked);
+    alert("Added this to local storage");
   })
+
+  // load data from previous input sessions by the user
+  $("#hour-9 .description").val(localStorage.getItem("hour-9"));
+  $("#hour-10 .description").val(localStorage.getItem("hour-10"));
+  $("#hour-11 .description").val(localStorage.getItem("hour-11"));
+  $("#hour-12 .description").val(localStorage.getItem("hour-12"));
+  $("#hour-13 .description").val(localStorage.getItem("hour-13"));
+  $("#hour-14 .description").val(localStorage.getItem("hour-14"));
+  $("#hour-15 .description").val(localStorage.getItem("hour-15"));
+  $("#hour-16 .description").val(localStorage.getItem("hour-16"));
+  $("#hour-17 .description").val(localStorage.getItem("hour-17"));
+    
+  
 });
